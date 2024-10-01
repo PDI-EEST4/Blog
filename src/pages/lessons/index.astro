@@ -1,52 +1,57 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro"
+import type { MarkdownPost } from "../../types"
+
+const categorizeLessons = () => {
+  const markdownFiles = import.meta.glob<MarkdownPost>("./files/*.md", { eager: true })
+
+  // Get all lessons
+  const lessons = Object.entries(markdownFiles).map(([path, lesson]) => ({
+    path,
+    data: lesson.frontmatter
+  }))
+
+  // Group lessons by topic
+  const groupedLessons = lessons.reduce((acc, lesson) => {
+    const {topic, title } = lesson.data
+
+    if (!acc[topic]) {
+      acc[topic] = []
+    }
+
+    acc[topic].push({ title, path: lesson.path })
+    return acc;
+    }, {} as Record<string, Array<{ title: string; path: string }>>)
+
+  return groupedLessons
+}
 ---
 
 <SiteLayout title="Clases">
   <h1 class="display-4">Listado de clases</h1>
   <hr />
   <div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item border-0">
-      <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-          <h3 class="display-6">Proyecto</h3>
-        </button>
-      </h2>
-      <div id="flush-collapseOne" class="accordion-collapse show" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body py-0">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item lead fw-semibold">
-              <a href="#">Planificación de proyecto</a>
-            </li>
-            <li class="list-group-item lead fw-semibold">
-              <a href="#">Modelado de proyecto</a>
-            </li>
-            <li class="list-group-item lead fw-semibold">
-              <a href="#">Modelo Entidad-Relación</a>
-            </li>
-          </ul>
+    { /* List lessons by topic */}
+    { Object.entries(categorizeLessons()).map(([topic, lessons]) => (
+      <div class="accordion-item border-0">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${topic}`} aria-expanded="true" aria-controls={`flush-collapse${topic}`}>
+            <h3 class="display-6">{topic}</h3>
+          </button>
+        </h2>
+        <div id={`flush-collapse${topic}`} class="accordion-collapse show" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body py-0">
+            <ul class="list-group list-group-flush">
+              { lessons.map(lesson => (
+                <li class="list-group-item lead fw-semibold">
+                  <a href={'./lessons/' + lesson.path.slice(0, -3)}>{lesson.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-          <h3 class="display-6">Diseño</h3>
-        </button>
-      </h2>
-      <div id="flush-collapseTwo" class="accordion-collapse show" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-      </div>
-    </div><div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-          <h3 class="display-6">Implementación</h3>
-        </button>
-      </h2>
-      <div id="flush-collapseThree" class="accordion-collapse show" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-      </div>
-    </div>
+    ))}
   </div>
 </SiteLayout>
 
