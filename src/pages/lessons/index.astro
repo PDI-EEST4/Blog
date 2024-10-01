@@ -35,11 +35,11 @@ const categorizeLessons = () => {
     { Object.entries(categorizeLessons()).map(([topic, lessons]) => (
       <div class="accordion-item border-0">
         <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${topic}`} aria-expanded="true" aria-controls={`flush-collapse${topic}`}>
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${topic.split(' ')[0]}`} aria-expanded="true" aria-controls={`flush-collapse${topic}`}>
             <h3 class="display-6">{topic}</h3>
           </button>
         </h2>
-        <div id={`flush-collapse${topic}`} class="accordion-collapse show" data-bs-parent="#accordionFlushExample">
+        <div id={`flush-collapse${topic.split(' ')[0]}`} class="accordion-collapse show" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body py-0">
             <ul class="list-group list-group-flush">
               { lessons.map(lesson => (
