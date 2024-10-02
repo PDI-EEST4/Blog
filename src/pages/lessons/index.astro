@@ -13,15 +13,15 @@ const categorizeLessons = () => {
 
   // Group lessons by topic
   const groupedLessons = lessons.reduce((acc, lesson) => {
-    const {topic, title } = lesson.data
+    const {topic, title, slug } = lesson.data
 
     if (!acc[topic]) {
       acc[topic] = []
     }
 
-    acc[topic].push({ title, path: lesson.path })
+    acc[topic].push({ title, path: lesson.path, slug })
     return acc;
-    }, {} as Record<string, Array<{ title: string; path: string }>>)
+    }, {} as Record<string, Array<{ title: string; path: string, slug: string }>>)
 
   return groupedLessons
 }
@@ -44,7 +44,7 @@ const categorizeLessons = () => {
             <ul class="list-group list-group-flush">
               { lessons.map(lesson => (
                 <li class="list-group-item lead fw-semibold">
-                  <a href={'./lessons/' + lesson.path.slice(0, -3)}>{lesson.title}</a>
+                  <a href={`./lessons/lesson?slug=${lesson.slug}`}>{lesson.title}</a>
                 </li>
               ))}
             </ul>
