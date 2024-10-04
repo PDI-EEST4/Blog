@@ -1,4 +1,6 @@
 ---
+import Accordion from "../../components/Accordion.astro"
+import AccordionItem from "../../components/AccordionItem.astro"
 import SiteLayout from "../../layouts/SiteLayout.astro"
 import type { MarkdownPost } from "../../types"
 
@@ -30,38 +32,22 @@ const categorizeLessons = () => {
 <SiteLayout title="Clases">
   <h1 class="display-4">Listado de clases</h1>
   <hr />
-  <div class="accordion accordion-flush" id="accordionFlushExample">
-    { /* List lessons by topic */}
-    { Object.entries(categorizeLessons()).map(([topic, lessons]) => (
-      <div class="accordion-item border-0">
-        <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${topic.split(' ')[0]}`} aria-expanded="true" aria-controls={`flush-collapse${topic}`}>
-            <h3 class="display-6">{topic}</h3>
-          </button>
-        </h2>
-        <div id={`flush-collapse${topic.split(' ')[0]}`} class="accordion-collapse show" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body py-0">
-            <ul class="list-group list-group-flush">
-              { lessons.map(lesson => (
-                <li class="list-group-item lead fw-semibold">
-                  <a href={`./lessons/lesson?slug=${lesson.slug}`}>{lesson.title}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-</SiteLayout>
-
-<style>
-.accordion-button:not(.collapsed) {
-      background-color: transparent !important;
-      color: inherit;
+  <Accordion>
+    {/* List lessons by topic */}
+    {
+      Object.entries(categorizeLessons()).map(([topic, lessons]) => (
+        <AccordionItem title={topic}>
+          <ul class="list-group list-group-flush">
+            {lessons.map((lesson) => (
+              <li class="list-group-item lead fw-semibold">
+                <a href={`./lessons/lesson?slug=${lesson.slug}`}>
+                  {lesson.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </AccordionItem>
+      ))
     }
-
-button.accordion-button:focus{
-      box-shadow: inherit;
-}
-</style>
+  </Accordion>
+</SiteLayout>
