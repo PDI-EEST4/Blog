@@ -1,0 +1,22 @@
+---
+import { generateRandomId } from "../utils/generateRandomId.js"
+
+const { alwaysOpen = false } = Astro.props
+const accordionId = `accordion-${generateRandomId()}`
+---
+
+<div class="accordion accordion-flush" id={accordionId}>
+  <slot />
+</div>
+
+<script define:vars={{ accordionId, alwaysOpen }}>
+  const $accordion = document.querySelector(`#${accordionId}`)
+  const $items = $accordion.querySelectorAll(".accordion-item")
+
+  $items.forEach(($item) => {
+    const $collapsable = $item.querySelector(".accordion-collapse")
+
+    if ($collapsable && !alwaysOpen)
+      $collapsable?.setAttribute("data-bs-parent", `#${accordionId}`)
+  })
+</script>
