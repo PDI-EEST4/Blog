@@ -17,6 +17,6 @@ const accordionId = `accordion-${generateRandomId()}`
     const $collapsable = $item.querySelector(".accordion-collapse")
 
     if ($collapsable && !alwaysOpen)
-      $collapsable?.setAttribute("data-bs-parent", `#${accordionId}`)
+      $collapsable.setAttribute("data-bs-parent", `#${accordionId}`)
   })
 </script>
