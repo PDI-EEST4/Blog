@@ -1,0 +1,32 @@
+---
+import SiteLayout from "./SiteLayout.astro"
+---
+
+<SiteLayout>
+  <div class="row">
+    <div class="col-md-4">
+      <ul id="map" class="sticky-top list-unstyled"></ul>
+    </div>
+    <div id="lesson-content" class="col-md-8">
+      <slot />
+    </div>
+  </div>
+</SiteLayout>
+
+<script is:inline>
+  const $map = document.querySelector("#map")
+  const $lessonContent = document.querySelector("#lesson-content")
+  const $headings = $lessonContent.querySelectorAll("h1, h2, h3, h4, h5, h6")
+
+  $headings.forEach(($heading) => {
+    const tag = $heading.tagName.toLowerCase()
+    const $wrapper = document.createElement("li")
+    const $link = document.createElement("a")
+
+    $link.href = `#${$heading.id}`
+    $link.innerText = $heading.innerText
+    $link.style.marginLeft = `${(Number(tag[1]) - 1) * 20}px`
+    $wrapper.appendChild($link)
+    $map.appendChild($wrapper)
+  })
+</script>

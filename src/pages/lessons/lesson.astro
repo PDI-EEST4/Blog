@@ -1,5 +1,5 @@
 ---
-import SiteLayout from "../../layouts/SiteLayout.astro";
+import LessonLayout from "../../layouts/LessonLayout.astro";
 
 const slug = Astro.url.searchParams.get("slug");
 const markdownFiles = import.meta.glob("./files/*.md", { eager: true });
@@ -19,6 +19,6 @@ if (!postContent) {
 }
 ---
 
-<SiteLayout>
+<LessonLayout>
   <postContent.default />
-</SiteLayout>
+</LessonLayout>
