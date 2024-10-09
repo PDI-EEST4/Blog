@@ -30,24 +30,26 @@ const categorizeLessons = () => {
 ---
 
 <SiteLayout title="Clases">
-  <h1 class="display-4">Listado de clases</h1>
-  <hr />
-  <Accordion>
-    {/* List lessons by topic */}
-    {
-      Object.entries(categorizeLessons()).map(([topic, lessons]) => (
-        <AccordionItem title={topic}>
-          <ul class="list-group list-group-flush">
-            {lessons.map((lesson) => (
-              <li class="list-group-item lead fw-semibold">
-                <a href={`./lessons/lesson?slug=${lesson.slug}`}>
-                  {lesson.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </AccordionItem>
-      ))
-    }
-  </Accordion>
+  <div class="container">
+    <h1 class="display-4">Listado de clases</h1>
+    <hr />
+    <Accordion>
+      {/* List lessons by topic */}
+      {
+        Object.entries(categorizeLessons()).map(([topic, lessons]) => (
+          <AccordionItem title={topic}>
+            <ul class="list-group list-group-flush">
+              {lessons.map((lesson) => (
+                <li class="list-group-item lead fw-semibold">
+                  <a href={`./lessons/lesson?slug=${lesson.slug}`}>
+                    {lesson.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </AccordionItem>
+        ))
+      }
+    </Accordion>
+  </div>
 </SiteLayout>
