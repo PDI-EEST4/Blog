@@ -13,10 +13,10 @@ import SiteLayout from "./SiteLayout.astro"
   </div>
 </SiteLayout>
 
-<script is:inline>
+<script>
   const $map = document.querySelector("#map")
   const $lessonContent = document.querySelector("#lesson-content")
-  const $headings = $lessonContent.querySelectorAll("h1, h2, h3, h4, h5, h6")
+  const $headings = $lessonContent.querySelectorAll("h1, h2, h3, h4, h5, h6") as NodeListOf<HTMLElement>
 
   $headings.forEach(($heading) => {
     const tag = $heading.tagName.toLowerCase()
