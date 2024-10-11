@@ -13,6 +13,7 @@ import SiteLayout from "./SiteLayout.astro"
   </div>
 </SiteLayout>
 
+<!-- Table of Contents -->
 <script>
   const $map = document.querySelector("#map")
   const $lessonContent = document.querySelector("#lesson-content")
@@ -30,3 +31,68 @@ import SiteLayout from "./SiteLayout.astro"
     $map.appendChild($wrapper)
   })
 </script>
+
+<!-- Copy to Clipboard Button on Code Blocks -->
+<script>
+  const $lessonContent = document.querySelector("#lesson-content")
+  const $codeBlocks = $lessonContent.querySelectorAll("pre")
+
+  const preCopyLabel = "Copiar"
+  const postCopyLabel = "Copiado!"
+  const msForLabelReset = 700
+
+  function createCopyCodeButton($target) {
+    const $copyButton = document.createElement("button")
+    $copyButton.className = "copy-code"
+    $copyButton.innerText = preCopyLabel
+
+    $copyButton.addEventListener("click", () => {
+      const $code = $target.querySelector("code")
+      
+      navigator.clipboard.writeText($code.innerText).then(() => {
+        $copyButton.innerText = postCopyLabel
+      })
+
+      setTimeout(() => {
+        $copyButton.innerText = preCopyLabel
+      }, msForLabelReset)
+    })
+
+    return $copyButton
+  }
+
+  $codeBlocks.forEach(($codeBlock) => {
+    const $button = createCopyCodeButton($codeBlock)
+    $codeBlock.appendChild($button)
+  })
+</script>
+
+<style is:global>
+  pre {
+    position: relative;
+  }
+
+  pre .copy-code {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 5px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 3px;
+    width: auto;
+    height: 24px;
+    color: white;
+    background-color: var(--bs-blue);
+    text-align: center;
+    visibility: hidden;
+  }
+
+  pre:hover .copy-code {
+    visibility: visible;
+  }
+
+  .copy-code:hover {
+    background-color: color-mix(in srgb, var(--bs-blue) 75%, white 25%);
+  }
+</style>
