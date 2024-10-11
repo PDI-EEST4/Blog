@@ -43,12 +43,21 @@ import SiteLayout from "./SiteLayout.astro"
 
   function createCopyCodeButton($target) {
     const $copyButton = document.createElement("button")
-    $copyButton.className = "copy-code"
+    $copyButton.type = "button"
+    $copyButton.classList.add(
+      "btn",
+      "btn-primary",
+      "btn-sm",
+      "position-absolute",
+      "top-0",
+      "end-0"
+    )
+    $copyButton.style = "margin-right: 5px; margin-top: 5px;"
     $copyButton.innerText = preCopyLabel
 
     $copyButton.addEventListener("click", () => {
       const $code = $target.querySelector("code")
-      
+
       navigator.clipboard.writeText($code.innerText).then(() => {
         $copyButton.innerText = postCopyLabel
       })
@@ -63,36 +72,17 @@ import SiteLayout from "./SiteLayout.astro"
 
   $codeBlocks.forEach(($codeBlock) => {
     const $button = createCopyCodeButton($codeBlock)
+    $codeBlock.classList.add("position-relative")
     $codeBlock.appendChild($button)
   })
 </script>
 
 <style is:global>
-  pre {
-    position: relative;
-  }
-
-  pre .copy-code {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 5px;
-    margin-top: 5px;
-    border: none;
-    border-radius: 3px;
-    width: auto;
-    height: 24px;
-    color: white;
-    background-color: var(--bs-blue);
-    text-align: center;
+  pre button {
     visibility: hidden;
   }
 
-  pre:hover .copy-code {
+  pre:hover button {
     visibility: visible;
-  }
-
-  .copy-code:hover {
-    background-color: color-mix(in srgb, var(--bs-blue) 75%, white 25%);
   }
 </style>
