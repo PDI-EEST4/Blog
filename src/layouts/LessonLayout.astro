@@ -85,4 +85,21 @@ import SiteLayout from "./SiteLayout.astro"
   pre:hover button {
     visibility: visible;
   }
+
+  blockquote::before {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: -5px -25px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--bs-primary) 30%, transparent 100%) 0%, rgba(255,255,255,0) 50%);
+    filter: blur(2px);
+  }
+
+  blockquote {
+    position: relative;
+    border-left: .25em solid var(--bs-primary);
+    padding: 5px 25px;
+    color: var(--bs-gray);
+  }
 </style>
