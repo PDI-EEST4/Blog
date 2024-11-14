@@ -62,6 +62,10 @@ Tener en cuenta:
 - Debe haber una división adecuada de carpetas y archivos
 ```
 |_css
+|   |_ sass
+|   |    |_ componente
+|   |    |         |_ componente.scss
+|   |    |_ main.scss
 |   |_ style.css
 |   |_ ...
 |_scripts
