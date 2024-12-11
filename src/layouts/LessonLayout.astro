@@ -5,7 +5,7 @@ import SiteLayout from "./SiteLayout.astro"
 <SiteLayout>
   <div class="row">
     <div class="col-md-4 col-lg-3">
-      <ul id="map" class="sticky-top list-unstyled pt-3"></ul>
+      <ul id="map" class="sticky-top list-unstyled pt-3 user-select-none"></ul>
     </div>
     <div id="lesson-content" class="col-md-8">
       <slot />
@@ -26,9 +26,53 @@ import SiteLayout from "./SiteLayout.astro"
 
     $link.href = `#${$heading.id}`
     $link.innerText = $heading.innerText
-    $link.style.marginLeft = `${(Number(tag[1]) - 1) * 20}px`
+    $wrapper.classList.add(`ms-${Number(tag[1])+1}`)
+    $link.classList.add("text-black-50", "text-decoration-none")
+
+    /*$link.addEventListener("click", () => {
+      const $prevLink = $map.querySelector("a.text-info")
+
+      if($prevLink) {
+        $prevLink.classList.remove("text-decoration-underline")
+        $prevLink.classList.replace("text-info", "text-black-50")
+      }
+      
+      $link.classList.add("text-decoration-underline")
+      $link.classList.replace("text-black-50", "text-info")
+    }, false)*/
+
     $wrapper.appendChild($link)
     $map.appendChild($wrapper)
+  })
+
+  let $lastActiveLink = null
+
+  const observer = new IntersectionObserver((entries) => {
+    const visibleEntries = entries.filter(entry => entry.isIntersecting)
+    const closest = visibleEntries.sort((a, b) => {
+      return Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top)
+    })[0]
+
+    if (closest) {
+      const $link = $map.querySelector(`a[href="#${closest.target.id}"]`)
+
+      if ($lastActiveLink && $lastActiveLink !== $link) {
+        $lastActiveLink.classList.remove("text-info", "text-decoration-underline")
+        $lastActiveLink.classList.add("text-black-50")
+      }
+
+      $link.classList.add("text-info", "text-decoration-underline")
+      $link.classList.remove("text-black-50")
+
+      $lastActiveLink = $link
+    }
+  }, {
+    rootMargin: "0px 0px -50% 0px",
+    threshold: 0.5
+  })
+
+  $headings.forEach(($heading) => {
+    observer.observe($heading)
   })
 </script>
 
@@ -102,5 +146,9 @@ import SiteLayout from "./SiteLayout.astro"
     border-left: .25em solid var(--bs-primary);
     padding: 5px 25px;
     color: var(--bs-gray);
+  }
+
+  a.text-info {
+    transition: color 0.3s, text-decoration 0.3s;
   }
 </style>
