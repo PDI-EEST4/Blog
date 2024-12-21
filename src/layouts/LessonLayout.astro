@@ -29,47 +29,51 @@ import SiteLayout from "./SiteLayout.astro"
     $wrapper.classList.add(`ms-${Number(tag[1])+1}`)
     $link.classList.add("text-black-50", "text-decoration-none")
 
-    /*$link.addEventListener("click", () => {
-      const $prevLink = $map.querySelector("a.text-info")
-
-      if($prevLink) {
-        $prevLink.classList.remove("text-decoration-underline")
-        $prevLink.classList.replace("text-info", "text-black-50")
-      }
-      
-      $link.classList.add("text-decoration-underline")
-      $link.classList.replace("text-black-50", "text-info")
-    }, false)*/
-
     $wrapper.appendChild($link)
     $map.appendChild($wrapper)
   })
 
-  let $lastActiveLink = null
+  let $lastActiveLink = $map.querySelector(`a[href="#${$headings[0].id}"]`)
+  if ($lastActiveLink) {
+    $lastActiveLink.classList.add("text-info", "text-decoration-underline")
+    $lastActiveLink.classList.remove("text-black-50")
+  }
 
-  const observer = new IntersectionObserver((entries) => {
-    const visibleEntries = entries.filter(entry => entry.isIntersecting)
-    const closest = visibleEntries.sort((a, b) => {
-      return Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top)
-    })[0]
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort(
+          (a, b) =>
+            Math.abs(a.boundingClientRect.top) -
+            Math.abs(b.boundingClientRect.top)
+        )[0]
 
-    if (closest) {
-      const $link = $map.querySelector(`a[href="#${closest.target.id}"]`)
+      if (visibleEntry) {
+        const activeLink = $map.querySelector(
+          `a[href="#${visibleEntry.target.id}"]`
+        )
 
-      if ($lastActiveLink && $lastActiveLink !== $link) {
-        $lastActiveLink.classList.remove("text-info", "text-decoration-underline")
-        $lastActiveLink.classList.add("text-black-50")
+        if ($lastActiveLink && $lastActiveLink !== activeLink) {
+          $lastActiveLink.classList.remove(
+            "text-info",
+            "text-decoration-underline"
+          )
+          $lastActiveLink.classList.add("text-black-50")
+        }
+
+        if (activeLink) {
+          activeLink.classList.add("text-info", "text-decoration-underline")
+          activeLink.classList.remove("text-black-50")
+          $lastActiveLink = activeLink
+        }
       }
-
-      $link.classList.add("text-info", "text-decoration-underline")
-      $link.classList.remove("text-black-50")
-
-      $lastActiveLink = $link
+    },
+    {
+      rootMargin: "0px 0px -95% 0px",
+      threshold: 0.85,
     }
-  }, {
-    rootMargin: "0px 0px -50% 0px",
-    threshold: 0.5
-  })
+  )
 
   $headings.forEach(($heading) => {
     observer.observe($heading)
