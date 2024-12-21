@@ -1,12 +1,63 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro"
+import TeacherCard from "../components/TeacherCard.astro"
+import type { TeacherInfo } from "../types"
+
+const teachers: TeacherInfo[] = [
+  {
+    fullName: "Diego Pezet",
+    github: "diegohpezet",
+    portfolio: new URL("https://diegohpezet.me"),
+    degree: "Técnico en Programación",
+  },
+  {
+    fullName: "Victoria Moscardini",
+    github: "viiictoria12",
+    degree: "Técnica en Informática",
+  },
+  {
+    fullName: "Fabricio Futryk",
+    github: "ffutryk",
+    degree: "Técnico en Programación",
+  },
+]
 ---
 
 <SiteLayout title="Inicio">
-	<h1>PDI-Blog</h1>
-	<hr />
-	<article>
-		<p>¡Bienvenido blog de la materia!</p>
-		<p></p>
-	</article>
+  <article>
+    <header>
+      <h1 class="text-center">
+        Proyecto, Diseño e Implementación de Sistemas Computacionales
+      </h1>
+      <hr />
+    </header>
+
+    <section>
+      <p>
+        Bienvenidos al blog de la materia <i>Proyecto, Diseño e Implementación de Sistemas Computacionales</i> (PDISC) de la
+        <a href="https://tecnica4berazategui.edu.ar/">Escuela de Educación Secundaria Técnica nº4 de Berazategui</a>.
+      </p>
+      <p>
+        Este espacio está dedicado a ofrecer recursos y materiales para
+        estudiantes y docentes interesados en el desarrollo de sistemas
+        computacionales. Acá encontrarán información valiosa sobre el diseño, la
+        planificación y la implementación de proyectos, así como ejemplos
+        prácticos, actividades y herramientas que facilitarán tu aprendizaje y
+        práctica.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="lead">Docentes</h2>
+      <ul class="row mb-3 list-unstyled justify-content-center">
+        {
+          teachers.map((teacher) => (
+            <li class="col-12 col-sm-12 col-md-6 px-lg-5">
+              <TeacherCard {...teacher} />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </article>
 </SiteLayout>
