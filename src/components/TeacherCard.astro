@@ -1,0 +1,63 @@
+---
+import Image from "astro/components/Image.astro"
+import type { TeacherInfo } from "../types"
+
+interface Props extends TeacherInfo {}
+const { github, fullName, degree, portfolio } = Astro.props
+---
+
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-4">
+      <Image
+        src={`https://github.com/${github}.png`}
+        alt={`${fullName}'s Profile`}
+        class="img-fluid rounded-start"
+        style="object-fit: cover; height: 100px; width: 100%;"
+        inferSize={true}
+        loading="eager"
+      />
+    </div>
+    <div class="col-8">
+      <div class="card-body position-relative p-2 h-100">
+        <div>
+          <h5 class="card-title mb-1" style="font-size: 1rem;">
+            {fullName}
+          </h5>
+          <h6 class="card-subtitle mb-1 text-muted" style="font-size: 0.85rem;">
+            <a
+              href={`https://github.com/${github}`}
+              class="text-decoration-none"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              github.com/{github}
+            </a>
+          </h6>
+          {
+            portfolio && (
+              <h6
+                class="card-subtitle mb-1 text-muted"
+                style="font-size: 0.85rem;"
+              >
+                <a
+                  href={`${portfolio}`}
+                  class="text-decoration-none"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {portfolio.hostname}
+                </a>
+              </h6>
+            )
+          }
+        </div>
+        <p class="card-text position-absolute bottom-0 end-0 pe-3 pb-2">
+          <small class="text-muted" style="font-size: 0.75rem;">
+            {degree}
+          </small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
