@@ -16,10 +16,10 @@ const groupedLessons = groupBy(lessons, (lesson) => lesson.data.topic)
     <Accordion>
       {/* List lessons by topic */}
       {
-        Object.entries(groupedLessons).map(([topic, lessons]) => (
+        Object.keys(groupedLessons).map((topic) => (
           <AccordionItem title={topic}>
             <ul class="list-group list-group-flush">
-              {lessons.map((lesson) => (
+              {groupedLessons[topic].map((lesson) => (
                 <li class="list-group-item lead fw-semibold">
                   <a href={`./lessons/${lesson.slug}`}>{lesson.data.title}</a>
                 </li>
