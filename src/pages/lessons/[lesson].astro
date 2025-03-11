@@ -1,0 +1,17 @@
+---
+import { getEntry } from "astro:content"
+import LessonLayout from "../../layouts/LessonLayout.astro"
+
+const { lesson } = Astro.params
+const entry = await getEntry("lessons", lesson)
+
+if (!entry) {
+  throw new Error("Lesson not found")
+}
+
+const { Content, ..._ } = await entry.render()
+---
+
+<LessonLayout>
+  <Content />
+</LessonLayout>

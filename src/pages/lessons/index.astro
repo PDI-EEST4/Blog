@@ -1,32 +1,12 @@
 ---
+import { getCollection } from "astro:content"
 import Accordion from "../../components/Accordion.astro"
 import AccordionItem from "../../components/AccordionItem.astro"
 import SiteLayout from "../../layouts/SiteLayout.astro"
-import type { MarkdownPost } from "../../types"
+import { groupBy } from "../../utils/groupBy"
 
-const categorizeLessons = () => {
-  const markdownFiles = import.meta.glob<MarkdownPost>("./files/*.md", { eager: true })
-
-  // Get all lessons
-  const lessons = Object.entries(markdownFiles).map(([path, lesson]) => ({
-    path,
-    data: lesson.frontmatter
-  }))
-
-  // Group lessons by topic
-  const groupedLessons = lessons.reduce((acc, lesson) => {
-    const {topic, title, slug } = lesson.data
-
-    if (!acc[topic]) {
-      acc[topic] = []
-    }
-
-    acc[topic].push({ title, path: lesson.path, slug })
-    return acc;
-    }, {} as Record<string, Array<{ title: string; path: string, slug: string }>>)
-
-  return groupedLessons
-}
+const lessons = await getCollection("lessons")
+const groupedLessons = groupBy(lessons, (lesson) => lesson.data.topic)
 ---
 
 <SiteLayout title="Clases">
@@ -36,14 +16,12 @@ const categorizeLessons = () => {
     <Accordion>
       {/* List lessons by topic */}
       {
-        Object.entries(categorizeLessons()).map(([topic, lessons]) => (
+        Object.keys(groupedLessons).map((topic) => (
           <AccordionItem title={topic}>
             <ul class="list-group list-group-flush">
-              {lessons.map((lesson) => (
+              {groupedLessons[topic].map((lesson) => (
                 <li class="list-group-item lead fw-semibold">
-                  <a href={`./lessons/lesson?slug=${lesson.slug}`}>
-                    {lesson.title}
-                  </a>
+                  <a href={`./lessons/${lesson.slug}`}>{lesson.data.title}</a>
                 </li>
               ))}
             </ul>
