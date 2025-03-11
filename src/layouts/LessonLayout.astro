@@ -23,7 +23,9 @@ const { title } = Astro.props
 <script>
   const $map = document.querySelector("#map")
   const $lessonContent = document.querySelector("#lesson-content")
-  const $headings = $lessonContent.querySelectorAll("h1, h2, h3, h4, h5, h6") as NodeListOf<HTMLElement>
+  const $headings = $lessonContent.querySelectorAll(
+    "h1, h2, h3, h4, h5, h6"
+  ) as NodeListOf<HTMLElement>
 
   $headings.forEach(($heading) => {
     const tag = $heading.tagName.toLowerCase()
@@ -32,7 +34,7 @@ const { title } = Astro.props
 
     $link.href = `#${$heading.id}`
     $link.innerText = $heading.innerText
-    $wrapper.classList.add(`ms-${Number(tag[1])+1}`)
+    $wrapper.classList.add(`ms-${Number(tag[1]) + 1}`)
     $link.classList.add("text-black-50", "text-decoration-none")
 
     $wrapper.appendChild($link)
@@ -141,24 +143,30 @@ const { title } = Astro.props
   }
 
   blockquote::before {
-    content: ' ';
+    content: " ";
     position: absolute;
     width: 100%;
     height: 100%;
     margin: -5px -25px;
-    background: linear-gradient(90deg, color-mix(in srgb, var(--bs-primary) 30%, transparent 100%) 0%, rgba(255,255,255,0) 50%);
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--bs-primary) 30%, transparent 100%) 0%,
+      rgba(255, 255, 255, 0) 50%
+    );
     filter: blur(2px);
     z-index: -1;
   }
 
   blockquote {
     position: relative;
-    border-left: .25em solid var(--bs-primary);
+    border-left: 0.25em solid var(--bs-primary);
     padding: 5px 25px;
     color: var(--bs-gray);
   }
 
   a.text-info {
-    transition: color 0.3s, text-decoration 0.3s;
+    transition:
+      color 0.3s,
+      text-decoration 0.3s;
   }
 </style>

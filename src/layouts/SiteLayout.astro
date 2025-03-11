@@ -1,27 +1,27 @@
 ---
-import "../styles/global.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "../components/Navbar.astro";
-const { title } = Astro.props;
+import "../styles/global.css"
+import "bootstrap/dist/css/bootstrap.min.css"
+import Navbar from "../components/Navbar.astro"
+const { title } = Astro.props
 ---
 
-<html lang='es'>
+<html lang="es">
   <head>
-    <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
     <meta name="description" content="PDISC Blog" />
-    <title>{ title } | PDISC Blog</title>
+    <title>{title} | PDISC Blog</title>
   </head>
   <body>
     <Navbar />
     <main class="m-3 container mx-auto">
-      <slot />  <!-- Content will be injected here  -->
+      <slot /> <!-- Content will be injected here  -->
     </main>
   </body>
 </html>
 
 <script>
-  import "bootstrap/dist/js/bootstrap.bundle.min.js";
+  import "bootstrap/dist/js/bootstrap.bundle.min.js"
 </script>
