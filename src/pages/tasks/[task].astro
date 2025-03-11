@@ -1,0 +1,19 @@
+---
+import { getEntry } from "astro:content"
+import SiteLayout from "../../layouts/SiteLayout.astro"
+
+const { task } = Astro.params
+const entry = await getEntry("tasks", task)
+
+if (!entry) {
+  throw new Error("Task not found")
+}
+
+const { Content, headings } = await entry.render()
+---
+
+<SiteLayout title={headings[0].text}>
+  <div class="row">
+    <Content />
+  </div>
+</SiteLayout>

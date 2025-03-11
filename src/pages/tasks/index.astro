@@ -1,8 +1,22 @@
 ---
+import { getCollection } from "astro:content"
 import SiteLayout from "../../layouts/SiteLayout.astro"
+
+const tasks = await getCollection("tasks")
 ---
 
 <SiteLayout title="Tareas">
-  <h1 class="display-4">Listado de Tareas</h1>
-  <hr />
+  <div class="container">
+    <h1 class="display-4">Listado de tareas</h1>
+    <hr />
+    <ul class="list-group list-group-flush">
+      {
+        tasks.map((task) => (
+          <li class="list-group-item lead fw-semibold">
+            <a href={`./tasks/${task.slug}`}>{task.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </SiteLayout>
