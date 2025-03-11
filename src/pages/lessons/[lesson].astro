@@ -9,9 +9,9 @@ if (!entry) {
   throw new Error("Lesson not found")
 }
 
-const { Content, ..._ } = await entry.render()
+const { Content, headings } = await entry.render()
 ---
 
-<LessonLayout>
+<LessonLayout title={headings[0].text}>
   <Content />
 </LessonLayout>

@@ -1,8 +1,14 @@
 ---
 import SiteLayout from "./SiteLayout.astro"
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
 ---
 
-<SiteLayout>
+<SiteLayout title={title}>
   <div class="row">
     <div class="col-md-4 col-lg-3">
       <ul id="map" class="sticky-top list-unstyled pt-3 user-select-none"></ul>
