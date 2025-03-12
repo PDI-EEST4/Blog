@@ -13,7 +13,7 @@ const tasks = await getCollection("tasks")
       {
         tasks.map((task) => (
           <li class="list-group-item lead fw-semibold">
-            <a href={`./${task.slug}`}>{task.data.title}</a>
+            <a href={`/tasks/${task.slug}`}>{task.data.title}</a>
           </li>
         ))
       }

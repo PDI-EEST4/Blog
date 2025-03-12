@@ -21,7 +21,7 @@ const groupedLessons = groupBy(lessons, (lesson) => lesson.data.topic)
             <ul class="list-group list-group-flush">
               {groupedLessons[topic].map((lesson) => (
                 <li class="list-group-item lead fw-semibold">
-                  <a href={`./${lesson.slug}`}>{lesson.data.title}</a>
+                  <a href={`/lessons/${lesson.slug}`}>{lesson.data.title}</a>
                 </li>
               ))}
             </ul>
