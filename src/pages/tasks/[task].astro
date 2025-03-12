@@ -1,6 +1,13 @@
 ---
-import { getEntry } from "astro:content"
+import { getCollection, getEntry } from "astro:content"
 import SiteLayout from "../../layouts/SiteLayout.astro"
+
+export async function getStaticPaths() {
+  const tasks = await getCollection("tasks")
+
+  return tasks.map((task) => ({ params: { task: task.slug}}))
+  
+}
 
 const { task } = Astro.params
 const entry = await getEntry("tasks", task)

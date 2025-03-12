@@ -1,5 +1,4 @@
 ---
-import Image from "astro/components/Image.astro"
 import type { TeacherInfo } from "../types"
 
 interface Props extends TeacherInfo {}
@@ -9,12 +8,11 @@ const { github, fullName, degree, portfolio } = Astro.props
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-4">
-      <Image
+      <img
         src={`https://github.com/${github}.png`}
         alt={`${fullName}'s Profile`}
         class="img-fluid rounded-start"
         style="object-fit: cover; height: 100px; width: 100%;"
-        inferSize={true}
         loading="eager"
       />
     </div>

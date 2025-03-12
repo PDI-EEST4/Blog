@@ -1,6 +1,14 @@
 ---
 import { getEntry } from "astro:content"
 import LessonLayout from "../../layouts/LessonLayout.astro"
+import { getCollection } from "astro:content"
+
+export async function getStaticPaths() {
+  const lessons = await getCollection("lessons")
+
+  return lessons.map((lesson) => ({ params: { lesson: lesson.slug}}))
+  
+}
 
 const { lesson } = Astro.params
 const entry = await getEntry("lessons", lesson)
