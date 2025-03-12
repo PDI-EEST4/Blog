@@ -114,9 +114,18 @@ const { title } = Astro.props
     $copyButton.addEventListener("click", () => {
       const $code = $target.querySelector("code")
 
-      navigator.clipboard.writeText($code.innerText).then(() => {
-        $copyButton.innerText = postCopyLabel
-      })
+      if(navigator.clipboard) {
+        navigator.clipboard.writeText($code.innerText).then(() => {
+          $copyButton.innerText = postCopyLabel
+        })
+      } else {
+        const $textArea = document.createElement("textarea");
+        $textArea.value = $code.textContent;
+        document.body.appendChild($textArea);
+        $textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild($textArea);
+      }
 
       setTimeout(() => {
         $copyButton.innerText = preCopyLabel
