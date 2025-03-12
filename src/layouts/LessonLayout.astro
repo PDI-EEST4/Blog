@@ -125,6 +125,7 @@ const { title } = Astro.props
         $textArea.select();
         document.execCommand("copy");
         document.body.removeChild($textArea);
+        $copyButton.innerText = postCopyLabel
       }
 
       setTimeout(() => {
