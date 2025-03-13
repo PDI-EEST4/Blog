@@ -143,6 +143,16 @@ const { title } = Astro.props
   })
 </script>
 
+<!--Make images in markdown responsive-->
+<script>
+  const $lessonContent = document.querySelector("#lesson-content")
+  const $images = $lessonContent.querySelectorAll("img")
+
+  $images.forEach(($image) => {
+    $image.classList.add("img-fluid")
+  })
+</script>
+
 <style is:global>
   pre button {
     visibility: hidden;
