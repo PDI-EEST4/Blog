@@ -24,3 +24,18 @@ const { Content, headings } = await entry.render()
     <Content />
   </div>
 </SiteLayout>
+
+<script>
+  const $instructions = document.querySelector("#instructions")
+  const $bonusInstructions = $instructions.querySelector("#bonus")
+  const $quotes = document.querySelectorAll("blockquote")
+
+  if ($quotes)
+    $quotes.forEach(($quote) => {
+      $quote.classList.add("blockquote", "ms-3")
+    })
+
+  if ($instructions) $instructions.classList.add("ms-3")
+
+  if ($bonusInstructions) $bonusInstructions.classList.add("text-black-50")
+</script>
