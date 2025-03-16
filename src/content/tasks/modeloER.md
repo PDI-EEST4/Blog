@@ -2,6 +2,7 @@
 title: TP Nº2 | Modelo Entidad-Relación
 topic: Diseño
 slug: modelo_er
+visible: true
 ---
 
 # Trabajo Práctico Nº2

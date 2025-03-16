@@ -2,6 +2,7 @@
 title: TP Nº1 | Fundamentación del Proyecto
 topic: Proyecto
 slug: fundamentacion
+visible: true
 ---
 
 # Trabajo Práctico Nº1

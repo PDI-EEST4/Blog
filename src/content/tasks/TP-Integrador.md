@@ -2,6 +2,7 @@
 title: TP Integrador
 topic: Integrador
 slug: tp_integrador
+visible: false
 ---
 
 # Trabajo Práctico Integrador | E-Commerce

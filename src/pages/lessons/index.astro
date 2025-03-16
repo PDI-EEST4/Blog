@@ -5,7 +5,7 @@ import AccordionItem from "../../components/AccordionItem.astro"
 import SiteLayout from "../../layouts/SiteLayout.astro"
 import { groupBy } from "../../utils/groupBy"
 
-const lessons = await getCollection("lessons")
+const lessons = await getCollection("lessons", ({ data }) => data.visible)
 const groupedLessons = groupBy(lessons, (lesson) => lesson.data.topic)
 ---
 

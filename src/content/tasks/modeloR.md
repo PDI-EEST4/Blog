@@ -2,6 +2,7 @@
 title: TP Nº3 | Modelo Relacional
 topic: Diseño
 slug: modelo_r
+visible: true
 ---
 
 # Trabajo Práctico Nº3

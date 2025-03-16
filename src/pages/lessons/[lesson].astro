@@ -4,10 +4,9 @@ import LessonLayout from "../../layouts/LessonLayout.astro"
 import { getCollection } from "astro:content"
 
 export async function getStaticPaths() {
-  const lessons = await getCollection("lessons")
+  const lessons = await getCollection("lessons", ({ data }) => data.visible)
 
-  return lessons.map((lesson) => ({ params: { lesson: lesson.slug}}))
-  
+  return lessons.map((lesson) => ({ params: { lesson: lesson.slug } }))
 }
 
 const { lesson } = Astro.params
