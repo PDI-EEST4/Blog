@@ -5,7 +5,7 @@ slug: modelo_r
 visible: true
 ---
 
-# Trabajo Práctico Nº3
+# Trabajo Práctico Nº4
 
 **Temas**: **[Modelo Relacional](/lessons/mr)** ; [Modelo Entidad-Relación](/lessons/mer)
 

@@ -5,7 +5,7 @@ slug: modelo_er
 visible: true
 ---
 
-# Trabajo Práctico Nº2
+# Trabajo Práctico Nº3
 
 **Temas**: **[Modelo Entidad-Relación](/lessons/mer)**
 
