@@ -1,5 +1,5 @@
 ---
-title: TP Nº2 | Modelo Entidad-Relación
+title: TP Nº3 | Modelo Entidad-Relación
 topic: Diseño
 slug: modelo_er
 visible: true

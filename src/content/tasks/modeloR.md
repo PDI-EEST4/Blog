@@ -1,5 +1,5 @@
 ---
-title: TP Nº3 | Modelo Relacional
+title: TP Nº4 | Modelo Relacional
 topic: Diseño
 slug: modelo_r
 visible: true
