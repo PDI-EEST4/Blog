@@ -3,6 +3,13 @@ import { getCollection } from "astro:content"
 import SiteLayout from "../../layouts/SiteLayout.astro"
 
 const tasks = await getCollection("tasks", ({ data }) => data.visible)
+
+tasks.sort((a, b) => {
+  const numA = a.data.title.match(/\d+/)?.[0]
+  const numB = b.data.title.match(/\d+/)?.[0]
+
+  return (Number(numA) || 0) - (Number(numB) || 0)
+})
 ---
 
 <SiteLayout title="Tareas">
