@@ -15,7 +15,7 @@ visible: true
 
 <div id="instructions">
 
-A partir del modelo entidad-relación desarrollado en el [TP Nº1](/tasks/modelo_er), construir el modelo relacional correspondiente.
+A partir del modelo entidad-relación desarrollado en el [TP Nº3](/tasks/modelo_er), construir el modelo relacional correspondiente.
 
 1. Representá cada unas de las entidades observadas en el MER, indicando para cada una sus atributos, claves primarias y foráneas.
 2. Identificá la cardinalidad de las relaciones en el MER y convertilas a su equivalente en el modelo relacional.
