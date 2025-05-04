@@ -5,7 +5,7 @@ slug: creacion-node
 visible: true
 ---
 
-# Trabajo Práctico Nº1
+# Trabajo Práctico Nº6
 
 **Temas**: **[Implementación de Proyecto de Software](/lessons/implementacion)**
 
