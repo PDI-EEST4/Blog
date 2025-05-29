@@ -16,7 +16,7 @@ visible: true
 1. En base a la guía propuesta en la clase, replicar los pasos para tener un pryoecto de Node.js
 2. Una vez hecho eso, crear un archivo `index.js` en la raíz del repositorio
 3. Dicho archivo deberá tener una sola línea de código (por ahora) la cual deberá ser un `console.log()` con su nombre y su curso
-4. Iniciar un nuevo repositorio local mediante el comando `git init -y` (Tener en cuenta que para esto deberán tener git instalado y configurado con su cuenta)
+4. Iniciar un nuevo repositorio local mediante el comando `git init` (Tener en cuenta que para esto deberán tener git instalado y configurado con su cuenta)
     ```bash
     git config --global user.name "Tu nombre"
     git config --global user.email tuemail@example.com
