@@ -13,20 +13,29 @@ visible: true
 
 ## Consignas
 
-1. En base a la guía propuesta en la clase, replicar los pasos para tener un pryoecto de Node.js
-2. Una vez hecho eso, crear un archivo `index.js` en la raíz del repositorio
-3. Dicho archivo deberá tener una sola línea de código (por ahora) la cual deberá ser un `console.log()` con su nombre y su curso
-4. Iniciar un nuevo repositorio local mediante el comando `git init` (Tener en cuenta que para esto deberán tener git instalado y configurado con su cuenta)
+1. En base a la guía propuesta en la clase, replicar los pasos para tener un pryoecto de Node.js. Para ello
+* Instalar Node.js
+* Abrir VS-Code y abrir una nueva carpeta File -> Open Folder. Seleccionar una carpeta que **esté vacía**
+* Abrir el terminal y ejecutar el comando `npm init -y`. Este comando debería crearles un archivo `package.json`, que es el archivo de configuración de proyectos Node.js. Dicho archivo contendrá información sobre el proyecto, como su nombre, versión, etc
+* Crear un archivo `index.js` cuyo contenido deberia ser algo así como
+    ```js
+    console.log("Somos (alumnos) y este es el trabajo de Node.js para PDI (La mejor materia)")
+    ```
+2. Descargar y configurar Git. Para ello:
+* Instalar Git
+* Configurarlo, para ello
     ```bash
     git config --global user.name "Tu nombre"
     git config --global user.email tuemail@example.com
     ```
-5. Crear un archivo `.gitignore`. Buscar en internet cuál debería ser su contenido para proyectos en **Node.js y Express** y "copypastear" lo encontrado
-6. Subir el proyecto a un repositorio empleando ya sea git o la extension de git de VSCode
-7. Agregar un archivo `README.md` con el siguiente contenido
+* Abrir la terminal (sobre la carpeta del proyecto) y ejecutar el comando `git init`. El mismo deberia crear un repositorio local en la carpeta del proyecto (no es algo que puedan ver, confien. Aunque a lo mejor los archivos se 'ponen en verde')
+* Crear un archivo `.gitignore`. Buscar en internet cuál debería ser su contenido para proyectos en **Node.js y Express** y "copypastear" lo encontrado. Este se encarga de ignorar ciertos archivos y carpetas cuando los vayamos a subir a github
+* Subir el proyecto a un repositorio empleando ya sea git o la extension de git de VSCode
+3. Subir el proyecto a un repositorio empleando ya sea git o la extension de git de VSCode
+4. Agregar un archivo `README.md` con el siguiente contenido
     ```md
     # Proyecto de Node de [NombreAlumno]
 
     Este es mi proyecto de Node.js para el TP N°6 de la materia PDISC (que es mi favorita).
     ```
-8. Subir el archivo modificado al repositorio empleando ya sea git o la extension de git de VSCode
+5. Subir el archivo modificado al repositorio empleando ya sea git o la extension de git de VSCode
