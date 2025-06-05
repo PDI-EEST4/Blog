@@ -29,7 +29,8 @@ visible: true
     git config --global user.email tuemail@example.com
     ```
 * Abrir la terminal (sobre la carpeta del proyecto) y ejecutar el comando `git init`. El mismo deberia crear un repositorio local en la carpeta del proyecto (no es algo que puedan ver, confien. Aunque a lo mejor los archivos se 'ponen en verde')
-* Crear un archivo `.gitignore`. Buscar en internet cuál debería ser su contenido para proyectos en **Node.js y Express** y "copypastear" lo encontrado. Este se encarga de ignorar ciertos archivos y carpetas cuando los vayamos a subir a github
+* Crear un archivo Subir el proyecto a un repositorio empleando ya sea git o la extension de git de VSCode
+`.gitignore`. Buscar en internet cuál debería ser su contenido para proyectos en **Node.js y Express** y "copypastear" lo encontrado. Este se encarga de ignorar ciertos archivos y carpetas cuando los vayamos a subir a github
 * Subir el proyecto a un repositorio empleando ya sea git o la extension de git de VSCode
 3. Subir el proyecto a un repositorio empleando ya sea git o la extension de git de VSCode
 4. Agregar un archivo `README.md` con el siguiente contenido
